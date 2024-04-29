@@ -28,5 +28,12 @@ Then('my account is created', () => {
 });
 
 Then('I can log in to my account', () => {
-  // TODO: implement step
+  cy.get('.navbar > :nth-child(2) > .d-flex > :nth-child(2) > .btn').contains('Login').should('be.visible')
+  cy.get('.navbar > :nth-child(2) > .d-flex > :nth-child(2) > .btn').click()
+  cy.get('.mb-2').type('eric@eric')
+  cy.get('[type="password"]').type('ericeric')
+  cy.get('.ms-2').click()
+  cy.get('.modal-body > p').contains('Login successful').should('be.visible')
+  cy.get('.modal-footer > .btn').click()
+  cy.get('.navbar > :nth-child(2) > .d-flex > :nth-child(2) > .btn').contains('Profile').should('be.visible')
 });
